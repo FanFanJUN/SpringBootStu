@@ -30,4 +30,10 @@ public class UserServiceImpl implements UserService {
     public int insertSelective(TestUser record) {
         return userMapper.insertSelective(record);
     }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+
+        return userMapper.deleteByPrimaryKey(id);
+    }
 }

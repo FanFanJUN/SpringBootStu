@@ -10,4 +10,6 @@ public interface UserService {
     List selectList();
 
     int insertSelective(TestUser record);
+
+    int deleteByPrimaryKey(Integer id);
 }

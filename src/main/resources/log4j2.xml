@@ -79,35 +79,35 @@
         </RollingFile>
     </appenders>
 
-    <loggers>
-        <root level="DEBUG">
-            <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileWarn"/>
-            <appender-ref ref="RollingFileError"/>
-            <appender-ref ref="RollingFileDebug"/>
-        </root>
+<!--    <loggers>-->
+<!--        <root level="DEBUG">-->
+<!--            <appender-ref ref="Console"/>-->
+<!--            <appender-ref ref="RollingFileInfo"/>-->
+<!--            <appender-ref ref="RollingFileWarn"/>-->
+<!--            <appender-ref ref="RollingFileError"/>-->
+<!--            <appender-ref ref="RollingFileDebug"/>-->
+<!--        </root>-->
 
-        <!--记录druid-sql的记录-->
-        <logger name="druid.sql.Statement" level="debug" additivity="false">
-            <appender-ref ref="druidSqlRollingFile"/>
-        </logger>
-        <logger name="druid.sql.Statement" level="debug" additivity="false">
-            <appender-ref ref="druidSqlRollingFile"/>
-        </logger>
+<!--        &lt;!&ndash;记录druid-sql的记录&ndash;&gt;-->
+<!--        <logger name="druid.sql.Statement" level="debug" additivity="false">-->
+<!--            <appender-ref ref="druidSqlRollingFile"/>-->
+<!--        </logger>-->
+<!--        <logger name="druid.sql.Statement" level="debug" additivity="false">-->
+<!--            <appender-ref ref="druidSqlRollingFile"/>-->
+<!--        </logger>-->
 
-        <!--log4j2 自带过滤日志-->
-        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
-        <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
-        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
-        <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
-        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
-        <Logger name="org.crsh.plugin" level="warn" />
-        <logger name="org.crsh.ssh" level="warn"/>
-        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
-        <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
-        <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="warn"/>
-        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
-        <logger name="org.thymeleaf" level="warn"/>
-    </loggers>
+<!--        &lt;!&ndash;log4j2 自带过滤日志&ndash;&gt;-->
+<!--        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />-->
+<!--        <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />-->
+<!--        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />-->
+<!--        <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>-->
+<!--        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />-->
+<!--        <Logger name="org.crsh.plugin" level="warn" />-->
+<!--        <logger name="org.crsh.ssh" level="warn"/>-->
+<!--        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />-->
+<!--        <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />-->
+<!--        <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="warn"/>-->
+<!--        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>-->
+<!--        <logger name="org.thymeleaf" level="warn"/>-->
+<!--    </loggers>-->
 </configuration>

@@ -46,7 +46,17 @@ public class UserController {
             userService.insertSelective(user);
             return CommonResult.success("新增成功！");
         } catch (Exception e) {
-            return CommonResult.failed("新增失败！");
+            return CommonResult.failed(e.toString());
+        }
+    }
+
+    @PostMapping("/api/lc/DELETETUSER")
+    public CommonResult deleteUser(@RequestBody TestUser user) {
+        try {
+            userService.deleteByPrimaryKey(user.getId());
+            return CommonResult.success("删除成功！");
+        } catch (Exception e) {
+            return CommonResult.failed(e.toString());
         }
     }
 }
