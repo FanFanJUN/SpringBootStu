@@ -46,8 +46,8 @@
 <!--            <property name="rootClass" value="com.vlmap.model.AbstractModel"/>-->
         </javaModelGenerator>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="com.lc.model.mapper"
-                         targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
         <!--指定生成mapper接口的的路径-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lc.dao"
                              targetProject="src/main/java"/>

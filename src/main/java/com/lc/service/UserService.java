@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface UserService {
     TestUser getUser(TestUser testUser);
+
+    List selectList();
+
+    int insertSelective(TestUser record);
 }

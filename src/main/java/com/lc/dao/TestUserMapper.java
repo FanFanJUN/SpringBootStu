@@ -2,6 +2,8 @@ package com.lc.dao;
 
 import com.lc.model.entity.TestUser;
 
+import java.util.List;
+
 public interface TestUserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface TestUserMapper {
     int updateByPrimaryKeySelective(TestUser record);
 
     int updateByPrimaryKey(TestUser record);
+
+    List selectList();
 }

@@ -20,4 +20,14 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.selectByPrimaryKey(testUser.getId());
     }
+
+    @Override
+    public List selectList() {
+        return userMapper.selectList();
+    }
+
+    @Override
+    public int insertSelective(TestUser record) {
+        return userMapper.insertSelective(record);
+    }
 }
