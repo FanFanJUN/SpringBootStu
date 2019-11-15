@@ -20,7 +20,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
 
     @Override
     public void addComment(XmlElement xmlElement) {
-        super.addComment(xmlElement);
+
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
 
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
-        String format = "/**%s */";
+        String format = "/** %s */";
         String comment = String.format(format, new Object [] { introspectedColumn.getRemarks()});
         field.addJavaDocLine(comment);
     }

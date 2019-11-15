@@ -5,7 +5,8 @@
 
 <generatorConfiguration>
     <properties resource="application.properties"/>
-    <context id="DB2Tables" targetRuntime="MyBatis3">
+<!--    https://www.jianshu.com/p/f8a1915ea78b-->
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
@@ -53,11 +54,11 @@
                              targetProject="src/main/java"/>
 
         <!--生成全部表tableName设为%-->
-        <table tableName="test_user"
+        <table tableName="SYS_DIC"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>
     </context>
 </generatorConfiguration>
