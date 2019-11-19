@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 数据字典controller
+ */
 @RestController
 public class CacheController {
 
@@ -21,7 +24,7 @@ public class CacheController {
     BaseCache baseCache;
 
 
-    @PostMapping("/api/lc/cacheone")
+    @PostMapping("/api/lc/CACHEDIC")
     public Map cachebatchOne(@RequestBody SysDicVo dicNos){
           List projectIds = dicNos.getProjectIds();
           Map<String, List<SysDic>> map = dealReturnMap(baseCache.getDicValue(projectIds));

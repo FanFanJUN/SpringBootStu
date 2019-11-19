@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.SysTreeDicMapper">
+  <resultMap id="BaseResultMap" type="com.lc.model.entity.SysTreeDic">
+    <constructor>
+      <idArg column="DICTIONARY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="DICTIONARY_CATEGORY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DICTIONARY_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="HIGHER_LEVEL_DICTIONARY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NODE_ROUTE_CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DICTIONARY_CATEGORY_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STATUS_FLAG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LEVEL_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SEQUENCE_NUM" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="SYSTEM_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_TIMESTMP" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="MAINTENANCE_DATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DELETE_FLAG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_LEAF_NODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    DICTIONARY_NO, DICTIONARY_CATEGORY_NO, DICTIONARY_NM, HIGHER_LEVEL_DICTIONARY_NO, 
+    NODE_ROUTE_CONTENT, DICTIONARY_CATEGORY_NM, STATUS_FLAG, LEVEL_NO, SEQUENCE_NUM, 
+    SYSTEM_NO, CREATE_USER_NO, CREATE_ORG_NO, UPDATE_USER_NO, UPDATE_ORG_NO, UPDATE_TIMESTMP, 
+    MAINTENANCE_DATE, DELETE_FLAG, IS_LEAF_NODE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_TREE_DIC
+    where DICTIONARY_NO = #{dictionaryNo,jdbcType=VARCHAR}
+      and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from SYS_TREE_DIC
+    where DICTIONARY_NO = #{dictionaryNo,jdbcType=VARCHAR}
+      and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lc.model.entity.SysTreeDic">
+    insert into SYS_TREE_DIC (DICTIONARY_NO, DICTIONARY_CATEGORY_NO, 
+      DICTIONARY_NM, HIGHER_LEVEL_DICTIONARY_NO, 
+      NODE_ROUTE_CONTENT, DICTIONARY_CATEGORY_NM, 
+      STATUS_FLAG, LEVEL_NO, SEQUENCE_NUM, 
+      SYSTEM_NO, CREATE_USER_NO, CREATE_ORG_NO, 
+      UPDATE_USER_NO, UPDATE_ORG_NO, UPDATE_TIMESTMP, 
+      MAINTENANCE_DATE, DELETE_FLAG, IS_LEAF_NODE
+      )
+    values (#{dictionaryNo,jdbcType=VARCHAR}, #{dictionaryCategoryNo,jdbcType=VARCHAR}, 
+      #{dictionaryNm,jdbcType=VARCHAR}, #{higherLevelDictionaryNo,jdbcType=VARCHAR}, 
+      #{nodeRouteContent,jdbcType=VARCHAR}, #{dictionaryCategoryNm,jdbcType=VARCHAR}, 
+      #{statusFlag,jdbcType=VARCHAR}, #{levelNo,jdbcType=VARCHAR}, #{sequenceNum,jdbcType=INTEGER}, 
+      #{systemNo,jdbcType=VARCHAR}, #{createUserNo,jdbcType=VARCHAR}, #{createOrgNo,jdbcType=VARCHAR}, 
+      #{updateUserNo,jdbcType=VARCHAR}, #{updateOrgNo,jdbcType=VARCHAR}, #{updateTimestmp,jdbcType=TIMESTAMP}, 
+      #{maintenanceDate,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=VARCHAR}, #{isLeafNode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.model.entity.SysTreeDic">
+    insert into SYS_TREE_DIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictionaryNo != null">
+        DICTIONARY_NO,
+      </if>
+      <if test="dictionaryCategoryNo != null">
+        DICTIONARY_CATEGORY_NO,
+      </if>
+      <if test="dictionaryNm != null">
+        DICTIONARY_NM,
+      </if>
+      <if test="higherLevelDictionaryNo != null">
+        HIGHER_LEVEL_DICTIONARY_NO,
+      </if>
+      <if test="nodeRouteContent != null">
+        NODE_ROUTE_CONTENT,
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        DICTIONARY_CATEGORY_NM,
+      </if>
+      <if test="statusFlag != null">
+        STATUS_FLAG,
+      </if>
+      <if test="levelNo != null">
+        LEVEL_NO,
+      </if>
+      <if test="sequenceNum != null">
+        SEQUENCE_NUM,
+      </if>
+      <if test="systemNo != null">
+        SYSTEM_NO,
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO,
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO,
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO,
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO,
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP,
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE,
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG,
+      </if>
+      <if test="isLeafNode != null">
+        IS_LEAF_NODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictionaryNo != null">
+        #{dictionaryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNo != null">
+        #{dictionaryCategoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryNm != null">
+        #{dictionaryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="higherLevelDictionaryNo != null">
+        #{higherLevelDictionaryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRouteContent != null">
+        #{nodeRouteContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="statusFlag != null">
+        #{statusFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNo != null">
+        #{levelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sequenceNum != null">
+        #{sequenceNum,jdbcType=INTEGER},
+      </if>
+      <if test="systemNo != null">
+        #{systemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeafNode != null">
+        #{isLeafNode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.model.entity.SysTreeDic">
+    update SYS_TREE_DIC
+    <set>
+      <if test="dictionaryNm != null">
+        DICTIONARY_NM = #{dictionaryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="higherLevelDictionaryNo != null">
+        HIGHER_LEVEL_DICTIONARY_NO = #{higherLevelDictionaryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeRouteContent != null">
+        NODE_ROUTE_CONTENT = #{nodeRouteContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        DICTIONARY_CATEGORY_NM = #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="statusFlag != null">
+        STATUS_FLAG = #{statusFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNo != null">
+        LEVEL_NO = #{levelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sequenceNum != null">
+        SEQUENCE_NUM = #{sequenceNum,jdbcType=INTEGER},
+      </if>
+      <if test="systemNo != null">
+        SYSTEM_NO = #{systemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeafNode != null">
+        IS_LEAF_NODE = #{isLeafNode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DICTIONARY_NO = #{dictionaryNo,jdbcType=VARCHAR}
+      and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.model.entity.SysTreeDic">
+    update SYS_TREE_DIC
+    set DICTIONARY_NM = #{dictionaryNm,jdbcType=VARCHAR},
+      HIGHER_LEVEL_DICTIONARY_NO = #{higherLevelDictionaryNo,jdbcType=VARCHAR},
+      NODE_ROUTE_CONTENT = #{nodeRouteContent,jdbcType=VARCHAR},
+      DICTIONARY_CATEGORY_NM = #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      STATUS_FLAG = #{statusFlag,jdbcType=VARCHAR},
+      LEVEL_NO = #{levelNo,jdbcType=VARCHAR},
+      SEQUENCE_NUM = #{sequenceNum,jdbcType=INTEGER},
+      SYSTEM_NO = #{systemNo,jdbcType=VARCHAR},
+      CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      IS_LEAF_NODE = #{isLeafNode,jdbcType=VARCHAR}
+    where DICTIONARY_NO = #{dictionaryNo,jdbcType=VARCHAR}
+      and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

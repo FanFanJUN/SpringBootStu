@@ -54,7 +54,7 @@
                              targetProject="src/main/java"/>
 
         <!--生成全部表tableName设为%-->
-        <table tableName="SYS_DIC"
+        <table tableName="SYS_TREE_DIC"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
