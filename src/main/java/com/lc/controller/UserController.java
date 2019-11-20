@@ -7,6 +7,8 @@ import com.lc.common.CommonPage;
 import com.lc.common.CommonResult;
 import com.lc.model.entity.TestUser;
 import com.lc.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
     /**
      * 分页获取user信息
      * @param pageInfo
