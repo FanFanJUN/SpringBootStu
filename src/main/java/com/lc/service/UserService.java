@@ -12,4 +12,6 @@ public interface UserService {
     int insertSelective(TestUser record);
 
     int deleteByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TestUser record);
 }

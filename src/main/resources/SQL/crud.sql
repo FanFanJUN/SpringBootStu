@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 18/11/2019 20:58:20
+ Date: 19/11/2019 16:36:40
 */
 
 SET NAMES utf8mb4;
@@ -80,8 +80,22 @@ CREATE TABLE `SYS_TREE_DIC` (
   `UPDATE_TIMESTMP` timestamp(6) NULL DEFAULT NULL COMMENT '更新时间',
   `MAINTENANCE_DATE` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '维护日期',
   `DELETE_FLAG` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '删除标志',
+  `IS_LEAF_NODE` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '是否叶子节点',
   PRIMARY KEY (`DICTIONARY_NO`,`DICTIONARY_CATEGORY_NO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='树状数据字典';
+
+-- ----------------------------
+-- Records of SYS_TREE_DIC
+-- ----------------------------
+BEGIN;
+INSERT INTO `SYS_TREE_DIC` VALUES ('500000', '重庆市', 'all', 'all,500000', 'STD_GB_AREA', '行政区划', '1', '1', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '2');
+INSERT INTO `SYS_TREE_DIC` VALUES ('500100', '市辖区', '500000', 'all,500000,500100', 'STD_GB_AREA', '行政区划', '1', '2', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '2');
+INSERT INTO `SYS_TREE_DIC` VALUES ('500122', '渝北区', '500100', 'all,500000,500100,500122', 'STD_GB_AREA', '行政区划', '1', '3', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1');
+INSERT INTO `SYS_TREE_DIC` VALUES ('500200', '县', '500000', 'all,500000,500200', 'STD_GB_AREA', '行政区划', '1', '2', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1');
+INSERT INTO `SYS_TREE_DIC` VALUES ('510000', '四川省', 'all', 'all,510000', 'STD_GB_AREA', '行政区划', '1', '1', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '2');
+INSERT INTO `SYS_TREE_DIC` VALUES ('511000', '内江市', '510000', 'all,510000,511000', 'STD_GB_AREA', '行政区划', '1', '2', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '2');
+INSERT INTO `SYS_TREE_DIC` VALUES ('511024', '威远县', '511000', 'all,510000,511000,511024', 'STD_GB_AREA', '行政区划', '1', '3', 1, 'TEST', NULL, NULL, NULL, NULL, NULL, NULL, '2', '1');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_user
@@ -130,7 +144,6 @@ INSERT INTO `test_user` VALUES (2, '李彩', '654321', '2', 445555, '我叫李�
 INSERT INTO `test_user` VALUES (6, '小凡', '34567', '2', 456666, '三生三世十里桃花', '19980906');
 INSERT INTO `test_user` VALUES (9, '姚军', 'yaojun123456', '1', 333330, '姚军yaojun', '20000923');
 INSERT INTO `test_user` VALUES (10, 'c饿死', '788888', '2', 567777, '臭屁述吃不吃烧烤', '19950913');
-INSERT INTO `test_user` VALUES (40, 'ff', NULL, '1', 6, 'ddddd', '20191114');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -59,4 +59,14 @@ public class UserController {
             return CommonResult.failed(e.toString());
         }
     }
+
+    @PostMapping("/api/lc/UPDATEUSER")
+    public CommonResult updateUser(@RequestBody TestUser user) {
+        try {
+            userService.updateByPrimaryKeySelective(user);
+            return CommonResult.success("更新成功！");
+        } catch (Exception e) {
+            return CommonResult.failed(e.toString());
+        }
+    }
 }
