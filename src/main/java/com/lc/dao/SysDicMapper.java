@@ -19,4 +19,6 @@ public interface SysDicMapper {
     int updateByPrimaryKey(SysDic record);
 
     List getAllDic();
+
+    List selectList();
 }

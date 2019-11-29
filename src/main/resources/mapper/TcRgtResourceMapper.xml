@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.TcRgtResourceMapper">
+  <resultMap id="BaseResultMap" type="com.lc.model.entity.TcRgtResource">
+    <constructor>
+      <idArg column="RESOURCE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_TP" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_EFFECT_FLG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PARENT_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_LVL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_ORD" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PARENT_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="HIDE_IN_MENU" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="HIDE_CHILDREN_IN_MENU" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STATUS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEL_FLG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SYS_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_PATH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_ICON" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOCATION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_LEAF" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_TIMESTMP" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="MAINTENANCE_DATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    RESOURCE_ID, RESOURCE_NM, RESOURCE_NO, RESOURCE_TP, RESOURCE_EFFECT_FLG, PARENT_NO, 
+    RESOURCE_LVL, RESOURCE_ORD, PARENT_NM, HIDE_IN_MENU, HIDE_CHILDREN_IN_MENU, STATUS, 
+    DEL_FLG, SYS_ID, RESOURCE_PATH, RESOURCE_ICON, LOCATION, IS_LEAF, CREATE_USER_NO, 
+    CREATE_ORG_NO, UPDATE_USER_NO, UPDATE_ORG_NO, UPDATE_TIMESTMP, MAINTENANCE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TC_RGT_RESOURCE
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TC_RGT_RESOURCE
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lc.model.entity.TcRgtResource">
+    insert into TC_RGT_RESOURCE (RESOURCE_ID, RESOURCE_NM, RESOURCE_NO, 
+      RESOURCE_TP, RESOURCE_EFFECT_FLG, PARENT_NO, 
+      RESOURCE_LVL, RESOURCE_ORD, PARENT_NM, 
+      HIDE_IN_MENU, HIDE_CHILDREN_IN_MENU, STATUS, 
+      DEL_FLG, SYS_ID, RESOURCE_PATH, 
+      RESOURCE_ICON, LOCATION, IS_LEAF, 
+      CREATE_USER_NO, CREATE_ORG_NO, UPDATE_USER_NO, 
+      UPDATE_ORG_NO, UPDATE_TIMESTMP, MAINTENANCE_DATE
+      )
+    values (#{resourceId,jdbcType=VARCHAR}, #{resourceNm,jdbcType=VARCHAR}, #{resourceNo,jdbcType=VARCHAR}, 
+      #{resourceTp,jdbcType=VARCHAR}, #{resourceEffectFlg,jdbcType=VARCHAR}, #{parentNo,jdbcType=VARCHAR}, 
+      #{resourceLvl,jdbcType=VARCHAR}, #{resourceOrd,jdbcType=VARCHAR}, #{parentNm,jdbcType=VARCHAR}, 
+      #{hideInMenu,jdbcType=VARCHAR}, #{hideChildrenInMenu,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlg,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{resourcePath,jdbcType=VARCHAR}, 
+      #{resourceIcon,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{isLeaf,jdbcType=VARCHAR}, 
+      #{createUserNo,jdbcType=VARCHAR}, #{createOrgNo,jdbcType=VARCHAR}, #{updateUserNo,jdbcType=VARCHAR}, 
+      #{updateOrgNo,jdbcType=VARCHAR}, #{updateTimestmp,jdbcType=TIMESTAMP}, #{maintenanceDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.model.entity.TcRgtResource">
+    insert into TC_RGT_RESOURCE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resourceId != null">
+        RESOURCE_ID,
+      </if>
+      <if test="resourceNm != null">
+        RESOURCE_NM,
+      </if>
+      <if test="resourceNo != null">
+        RESOURCE_NO,
+      </if>
+      <if test="resourceTp != null">
+        RESOURCE_TP,
+      </if>
+      <if test="resourceEffectFlg != null">
+        RESOURCE_EFFECT_FLG,
+      </if>
+      <if test="parentNo != null">
+        PARENT_NO,
+      </if>
+      <if test="resourceLvl != null">
+        RESOURCE_LVL,
+      </if>
+      <if test="resourceOrd != null">
+        RESOURCE_ORD,
+      </if>
+      <if test="parentNm != null">
+        PARENT_NM,
+      </if>
+      <if test="hideInMenu != null">
+        HIDE_IN_MENU,
+      </if>
+      <if test="hideChildrenInMenu != null">
+        HIDE_CHILDREN_IN_MENU,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="delFlg != null">
+        DEL_FLG,
+      </if>
+      <if test="sysId != null">
+        SYS_ID,
+      </if>
+      <if test="resourcePath != null">
+        RESOURCE_PATH,
+      </if>
+      <if test="resourceIcon != null">
+        RESOURCE_ICON,
+      </if>
+      <if test="location != null">
+        LOCATION,
+      </if>
+      <if test="isLeaf != null">
+        IS_LEAF,
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO,
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO,
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO,
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO,
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP,
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceNm != null">
+        #{resourceNm,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceNo != null">
+        #{resourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceTp != null">
+        #{resourceTp,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceEffectFlg != null">
+        #{resourceEffectFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNo != null">
+        #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceLvl != null">
+        #{resourceLvl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceOrd != null">
+        #{resourceOrd,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNm != null">
+        #{parentNm,jdbcType=VARCHAR},
+      </if>
+      <if test="hideInMenu != null">
+        #{hideInMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="hideChildrenInMenu != null">
+        #{hideChildrenInMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null">
+        #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePath != null">
+        #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIcon != null">
+        #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaf != null">
+        #{isLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.model.entity.TcRgtResource">
+    update TC_RGT_RESOURCE
+    <set>
+      <if test="resourceNm != null">
+        RESOURCE_NM = #{resourceNm,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceNo != null">
+        RESOURCE_NO = #{resourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceTp != null">
+        RESOURCE_TP = #{resourceTp,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceEffectFlg != null">
+        RESOURCE_EFFECT_FLG = #{resourceEffectFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNo != null">
+        PARENT_NO = #{parentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceLvl != null">
+        RESOURCE_LVL = #{resourceLvl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceOrd != null">
+        RESOURCE_ORD = #{resourceOrd,jdbcType=VARCHAR},
+      </if>
+      <if test="parentNm != null">
+        PARENT_NM = #{parentNm,jdbcType=VARCHAR},
+      </if>
+      <if test="hideInMenu != null">
+        HIDE_IN_MENU = #{hideInMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="hideChildrenInMenu != null">
+        HIDE_CHILDREN_IN_MENU = #{hideChildrenInMenu,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        DEL_FLG = #{delFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null">
+        SYS_ID = #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePath != null">
+        RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIcon != null">
+        RESOURCE_ICON = #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaf != null">
+        IS_LEAF = #{isLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.model.entity.TcRgtResource">
+    update TC_RGT_RESOURCE
+    set RESOURCE_NM = #{resourceNm,jdbcType=VARCHAR},
+      RESOURCE_NO = #{resourceNo,jdbcType=VARCHAR},
+      RESOURCE_TP = #{resourceTp,jdbcType=VARCHAR},
+      RESOURCE_EFFECT_FLG = #{resourceEffectFlg,jdbcType=VARCHAR},
+      PARENT_NO = #{parentNo,jdbcType=VARCHAR},
+      RESOURCE_LVL = #{resourceLvl,jdbcType=VARCHAR},
+      RESOURCE_ORD = #{resourceOrd,jdbcType=VARCHAR},
+      PARENT_NM = #{parentNm,jdbcType=VARCHAR},
+      HIDE_IN_MENU = #{hideInMenu,jdbcType=VARCHAR},
+      HIDE_CHILDREN_IN_MENU = #{hideChildrenInMenu,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DEL_FLG = #{delFlg,jdbcType=VARCHAR},
+      SYS_ID = #{sysId,jdbcType=VARCHAR},
+      RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      RESOURCE_ICON = #{resourceIcon,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      IS_LEAF = #{isLeaf,jdbcType=VARCHAR},
+      CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR}
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>
