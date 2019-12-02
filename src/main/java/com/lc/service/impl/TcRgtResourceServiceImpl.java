@@ -18,4 +18,20 @@ public class TcRgtResourceServiceImpl implements TcRgtResourceService {
     public List selectByParentNo(TcRgtResource tcRgtResource) {
         return tcRgtResourceMapper.selectByParentNo(tcRgtResource);
     }
+
+    @Override
+    public  int insertSelective(TcRgtResource tcRgtResource) {
+        return tcRgtResourceMapper.insertSelective(tcRgtResource);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(String resourceId) {
+        return tcRgtResourceMapper.deleteByPrimaryKey(resourceId);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(TcRgtResource record) {
+        return tcRgtResourceMapper.updateByPrimaryKeySelective(record);
+    }
+
 }

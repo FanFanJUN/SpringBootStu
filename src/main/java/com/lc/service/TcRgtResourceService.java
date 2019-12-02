@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface TcRgtResourceService {
     List selectByParentNo(TcRgtResource tcRgtResource);
+
+    int insertSelective(TcRgtResource record);
+
+    int deleteByPrimaryKey(String resourceId);
+
+    int updateByPrimaryKeySelective(TcRgtResource record);
 }

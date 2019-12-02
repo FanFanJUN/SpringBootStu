@@ -2,6 +2,7 @@ package com.lc.controller;
 
 
 import com.lc.common.CommonResult;
+import com.lc.common.IdUtils;
 import com.lc.model.entity.TcRgtResource;
 import com.lc.service.TcRgtResourceService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,36 @@ public class TcRrgResourceController {
             return CommonResult.success(tcRgtResourceService.selectByParentNo(tcRgtResource));
         } catch (Exception e) {
             return  CommonResult.failed("资源菜单获取失败");
+        }
+    }
+
+    @PostMapping("/api/lc/RESOURCEINSERT")
+    public CommonResult insertResource(@RequestBody TcRgtResource tcRgtResource) {
+        tcRgtResource.setDelFlg("2");
+        tcRgtResource.setStatus("1");
+        tcRgtResource.setResourceId(IdUtils.getRandomIdByUUID());
+        try {
+            return CommonResult.success(tcRgtResourceService.insertSelective(tcRgtResource), "新增成功");
+        } catch (Exception E) {
+            return  CommonResult.failed(E.toString());
+        }
+    }
+
+    @PostMapping("/api/lc/RESOURCEDELETE")
+    public CommonResult deleteResource(@RequestBody TcRgtResource tcRgtResource) {
+        try {
+            return CommonResult.success(tcRgtResourceService.deleteByPrimaryKey(tcRgtResource.getResourceId()), "删除成功");
+        } catch (Exception E) {
+            return  CommonResult.failed(E.toString());
+        }
+    }
+
+    @PostMapping("/api/lc/RESOURCEUPDATE")
+    public CommonResult updateResource(@RequestBody TcRgtResource tcRgtResource) {
+        try {
+            return CommonResult.success(tcRgtResourceService.updateByPrimaryKeySelective(tcRgtResource), "更新成功");
+        } catch (Exception E) {
+            return  CommonResult.failed(E.toString());
         }
     }
 }
