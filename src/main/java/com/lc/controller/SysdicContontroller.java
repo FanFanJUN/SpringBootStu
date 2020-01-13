@@ -2,6 +2,7 @@ package com.lc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lc.cache.BaseCache;
 import com.lc.common.CommonPage;
 import com.lc.common.CommonResult;
 import com.lc.model.entity.SysDic;
@@ -17,11 +18,15 @@ public class SysdicContontroller {
 
     @Resource
     SysDicService sysDicService;
+    @Resource
+    BaseCache baseCache;
 
     @PostMapping("/api/lc/SYSDICINSERT")
     public CommonResult insert(@RequestBody SysDic sysDic) {
         try {
-            return CommonResult.success(sysDicService.insertSelective(sysDic));
+            sysDicService.insertSelective(sysDic);
+            baseCache.refreshCache();
+            return CommonResult.success();
         } catch (Exception E) {
             return  CommonResult.failed(E.toString());
         }
@@ -30,7 +35,9 @@ public class SysdicContontroller {
     @PostMapping("/api/lc/SYSDICDELETE")
     public CommonResult delete(@RequestBody SysDic sysDic) {
         try {
-            return CommonResult.success(sysDicService.deleteByPrimaryKey(sysDic.getDictionaryNo(), sysDic.getDictionaryCategoryNo()));
+            sysDicService.deleteByPrimaryKey(sysDic.getDictionaryNo(), sysDic.getDictionaryCategoryNo());
+            baseCache.refreshCache();
+            return CommonResult.success();
         } catch (Exception E) {
             return  CommonResult.failed(E.toString());
         }
@@ -47,7 +54,9 @@ public class SysdicContontroller {
     @PostMapping("/api/lc/SYSDICUPDATE")
     public CommonResult update(@RequestBody SysDic sysDic) {
         try {
-            return CommonResult.success(sysDicService.updateByPrimaryKeySelective(sysDic));
+            sysDicService.updateByPrimaryKeySelective(sysDic);
+            baseCache.refreshCache();
+            return CommonResult.success();
         } catch (Exception E) {
             return  CommonResult.failed(E.toString());
         }

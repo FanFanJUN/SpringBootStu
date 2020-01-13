@@ -41,8 +41,15 @@ public class BaseCache {
 
     @PostConstruct
     public void initCache() {
-//        EnvProperties envProperties = new EnvProperties();
+        refreshCache();
+    }
+
+    /**
+     * 对数据字典进行增删改查时需要调用refreshDictCache()方法来刷新缓存，保证缓存中数据为最新数据
+     */
+    public void refreshCache() {
         logger.info(environment.getProperty(CacheParamConstant.CODE_CACHE_DIC));
+        CacheConstant.cacheBaseMap.clear();
         if(StringUtils.equals(environment.getProperty(CacheParamConstant.CODE_CACHE_DIC), CacheSwitchEnum.ON.getCode())) {
             logger.debug("数据字典处理开始");
             try {
