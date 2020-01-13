@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.TcRgtRoleGroupMapper">
+  <resultMap id="BaseResultMap" type="com.lc.model.entity.TcRgtRoleGroup">
+    <constructor>
+      <idArg column="ROLE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SYS_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ROLE_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ROLE_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ROLE_GROP_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_USER_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_ORG_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATE_TIMESTMP" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="MAINTENANCE_DATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STATUS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEL_FLG" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_ID, SYS_ID, ROLE_NO, ROLE_NM, ROLE_GROP_NO, CREATE_USER_NO, CREATE_ORG_NO, UPDATE_USER_NO, 
+    UPDATE_ORG_NO, UPDATE_TIMESTMP, MAINTENANCE_DATE, STATUS, DEL_FLG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TC_RGT_ROLE_GROUP
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TC_RGT_ROLE_GROUP
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lc.model.entity.TcRgtRoleGroup">
+    insert into TC_RGT_ROLE_GROUP (ROLE_ID, SYS_ID, ROLE_NO, 
+      ROLE_NM, ROLE_GROP_NO, CREATE_USER_NO, 
+      CREATE_ORG_NO, UPDATE_USER_NO, UPDATE_ORG_NO, 
+      UPDATE_TIMESTMP, MAINTENANCE_DATE, STATUS, 
+      DEL_FLG)
+    values (#{roleId,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{roleNo,jdbcType=VARCHAR}, 
+      #{roleNm,jdbcType=VARCHAR}, #{roleGropNo,jdbcType=VARCHAR}, #{createUserNo,jdbcType=VARCHAR}, 
+      #{createOrgNo,jdbcType=VARCHAR}, #{updateUserNo,jdbcType=VARCHAR}, #{updateOrgNo,jdbcType=VARCHAR}, 
+      #{updateTimestmp,jdbcType=TIMESTAMP}, #{maintenanceDate,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{delFlg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.model.entity.TcRgtRoleGroup">
+    insert into TC_RGT_ROLE_GROUP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="sysId != null">
+        SYS_ID,
+      </if>
+      <if test="roleNo != null">
+        ROLE_NO,
+      </if>
+      <if test="roleNm != null">
+        ROLE_NM,
+      </if>
+      <if test="roleGropNo != null">
+        ROLE_GROP_NO,
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO,
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO,
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO,
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO,
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP,
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="delFlg != null">
+        DEL_FLG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null">
+        #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNo != null">
+        #{roleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNm != null">
+        #{roleNm,jdbcType=VARCHAR},
+      </if>
+      <if test="roleGropNo != null">
+        #{roleGropNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        #{delFlg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.model.entity.TcRgtRoleGroup">
+    update TC_RGT_ROLE_GROUP
+    <set>
+      <if test="sysId != null">
+        SYS_ID = #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNo != null">
+        ROLE_NO = #{roleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNm != null">
+        ROLE_NM = #{roleNm,jdbcType=VARCHAR},
+      </if>
+      <if test="roleGropNo != null">
+        ROLE_GROP_NO = #{roleGropNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserNo != null">
+        CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgNo != null">
+        CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNo != null">
+        UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNo != null">
+        UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTimestmp != null">
+        UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintenanceDate != null">
+        MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null">
+        DEL_FLG = #{delFlg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.model.entity.TcRgtRoleGroup">
+    update TC_RGT_ROLE_GROUP
+    set SYS_ID = #{sysId,jdbcType=VARCHAR},
+      ROLE_NO = #{roleNo,jdbcType=VARCHAR},
+      ROLE_NM = #{roleNm,jdbcType=VARCHAR},
+      ROLE_GROP_NO = #{roleGropNo,jdbcType=VARCHAR},
+      CREATE_USER_NO = #{createUserNo,jdbcType=VARCHAR},
+      CREATE_ORG_NO = #{createOrgNo,jdbcType=VARCHAR},
+      UPDATE_USER_NO = #{updateUserNo,jdbcType=VARCHAR},
+      UPDATE_ORG_NO = #{updateOrgNo,jdbcType=VARCHAR},
+      UPDATE_TIMESTMP = #{updateTimestmp,jdbcType=TIMESTAMP},
+      MAINTENANCE_DATE = #{maintenanceDate,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DEL_FLG = #{delFlg,jdbcType=VARCHAR}
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

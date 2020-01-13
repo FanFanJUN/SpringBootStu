@@ -5,6 +5,9 @@ package com.lc.common;
  * Created by licai on 2019/11/13.
  */
 public enum ResultCode {
+    /**
+     * 操作代码
+     */
     SUCCESS(200, "操作成功"),
     FAILED(500, "操作失败"),
     VALIDATE_FAILED(404, "参数检验失败"),

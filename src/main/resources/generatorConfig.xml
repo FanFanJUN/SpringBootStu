@@ -54,7 +54,7 @@
                              targetProject="src/main/java"/>
 
         <!--生成全部表tableName设为%-->
-        <table tableName="TC_RGT_RESOURCE"
+        <table tableName="TC_RGT_ROLE_GROUP"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

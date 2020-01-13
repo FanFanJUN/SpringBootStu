@@ -1,6 +1,9 @@
 package com.lc.controller;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.lc.common.CommonPage;
 import com.lc.common.CommonResult;
 import com.lc.common.IdUtils;
 import com.lc.model.entity.TcRgtResource;
@@ -21,9 +24,20 @@ public class TcRrgResourceController {
     @PostMapping("/api/lc/RESOURCESELECTLIST")
     public CommonResult getResourceByParentNo(@RequestBody TcRgtResource tcRgtResource){
         try {
+            tcRgtResource.setResourceEffectFlg("1"); // 查询有效的资源||功能
             return CommonResult.success(tcRgtResourceService.selectByParentNo(tcRgtResource));
         } catch (Exception e) {
             return  CommonResult.failed("资源菜单获取失败");
+        }
+    }
+
+    @PostMapping("/api/lc/RESOURCEBUTTON")
+    public CommonResult getResourceButtonInfo(@RequestBody TcRgtResource tcRgtResource){
+        try {
+//            PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+            return CommonResult.success(CommonPage.restPage(tcRgtResourceService.selectByParentNo(tcRgtResource)));
+        } catch (Exception e) {
+            return  CommonResult.failed("按钮权限信息获取失败");
         }
     }
 
@@ -31,6 +45,7 @@ public class TcRrgResourceController {
     public CommonResult insertResource(@RequestBody TcRgtResource tcRgtResource) {
         tcRgtResource.setDelFlg("2");
         tcRgtResource.setStatus("1");
+        tcRgtResource.setResourceEffectFlg("1");
         tcRgtResource.setResourceId(IdUtils.getRandomIdByUUID());
         try {
             return CommonResult.success(tcRgtResourceService.insertSelective(tcRgtResource), "新增成功");

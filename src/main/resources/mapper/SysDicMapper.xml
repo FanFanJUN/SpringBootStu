@@ -3,7 +3,7 @@
 <mapper namespace="com.lc.dao.SysDicMapper">
   <resultMap id="BaseResultMap" type="com.lc.model.entity.SysDic">
     <constructor>
-      <idArg column="DICTIONARY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="DICTIONARY_NO" javaType="java.lang.String" jdbcType="VARCHAR"  />
       <idArg column="DICTIONARY_CATEGORY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="DICTIONARY_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="DICTIONARY_CATEGORY_NM" javaType="java.lang.String" jdbcType="VARCHAR" />

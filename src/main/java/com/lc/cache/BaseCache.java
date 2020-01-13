@@ -1,12 +1,15 @@
 package com.lc.cache;
 
+import com.lc.common.utils.Configure;
+import com.lc.common.utils.EnvProperties;
 import com.lc.model.entity.SysDic;
 import com.lc.model.entity.SysDicVo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +22,9 @@ import java.util.stream.Collectors;
 public class BaseCache {
     @Autowired
     GetAllDic getAllDic;
+
+    @Autowired
+    Environment environment; // 使用spring boot 里面的 Environment 直接取值
 
     private final static Logger logger = LoggerFactory.getLogger(BaseCache.class);
 
@@ -35,9 +41,17 @@ public class BaseCache {
 
     @PostConstruct
     public void initCache() {
-        logger.debug("数据字典处理开始");
-        List<SysDic> allDic = getAllDic.getALLdic();
-        CacheConstant.cacheBaseMap = allDic.stream().collect(Collectors.groupingBy(SysDic::getDictionaryCategoryNo));
+//        EnvProperties envProperties = new EnvProperties();
+        logger.info(environment.getProperty(CacheParamConstant.CODE_CACHE_DIC));
+        if(StringUtils.equals(environment.getProperty(CacheParamConstant.CODE_CACHE_DIC), CacheSwitchEnum.ON.getCode())) {
+            logger.debug("数据字典处理开始");
+            try {
+                List<SysDic> allDic = getAllDic.getALLdic();
+                CacheConstant.cacheBaseMap = allDic.stream().collect(Collectors.groupingBy(SysDic::getDictionaryCategoryNo));
+            } catch (Exception e) {
+                logger.info("数据字典缓存失败");
+            }
+        }
         logger.debug("数据字典处理结束");
     }
 
