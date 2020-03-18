@@ -41,7 +41,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <!--        热部署-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+            </dependency>
         <!--AOP-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -144,15 +149,154 @@
             <version>18.0</version>
         </dependency>
 
+        <!-- slf4j -->
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-api</artifactId>-->
+<!--            <version>${slf4j.version}</version>-->
+<!--        </dependency>-->
+        <!-- logback -->
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-core</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-classic</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-access</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
+        <!-- springboot jar中没有资源文件 -->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <filtering>true</filtering>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <excludes>-->
+<!--                    <exclude>**/**</exclude>-->
+<!--                </excludes>-->
+<!--            </resource>-->
+<!--        </resources>-->
         <plugins>
+            <!--打包jar 先前使用的是spring-boot-maven-plugin来打包，
+            这个插件会将项目所有的依赖打入BOOT-INF/lib下，替换为maven-jar-plugin-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <addClasspath>true</addClasspath>-->
+<!--                            &lt;!&ndash;MANIFEST.MF 中 Class-Path 加入前缀 &ndash;&gt;-->
+<!--                            <classpathPrefix>lib/</classpathPrefix>-->
+<!--                            &lt;!&ndash;jar包不包含唯一版本标识 &ndash;&gt;-->
+<!--                            <useUniqueVersions>false</useUniqueVersions>-->
+<!--                            &lt;!&ndash;指定入口类 &ndash;&gt;-->
+<!--                            <mainClass>com.lc.SpringbootApplication</mainClass>-->
+<!--                        </manifest>-->
+<!--                        <manifestEntries>-->
+<!--                            &lt;!&ndash;MANIFEST.MF 中 Class-Path 加入资源文件目录 &ndash;&gt;-->
+<!--                            <Class-Path>/config</Class-Path>-->
+<!--                        </manifestEntries>-->
+<!--                    </archive>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash;拷贝依赖 copy-dependencies &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-dependency-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>copy-dependencies</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy-dependencies</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <outputDirectory>-->
+<!--                                ${project.build.directory}/lib-->
+<!--                            </outputDirectory>-->
+<!--                            <excludeTransitive>false</excludeTransitive>-->
+<!--                            <stripVersion>false</stripVersion>-->
+<!--                            <includeScope>runtime</includeScope>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash;拷贝资源文件 copy-resources, config固定 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-resources-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>copy-resources</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy-resources</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <resources>-->
+<!--                                <resource>-->
+<!--                                    <directory>src/main/resources</directory>-->
+<!--                                </resource>-->
+<!--                            </resources>-->
+<!--                            <outputDirectory>${project.build.directory}/resources</outputDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+            <!--spring boot repackage，依赖 maven-jar-plugin 打包的jar包 重新打包成 spring boot
+				的jar包 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+<!--                <configuration>-->
+<!--                    <layout>ZIP</layout>-->
+<!--                    &lt;!&ndash;使用外部配置文件，jar包里没有资源文件 &ndash;&gt;-->
+<!--                    <addResources>true</addResources>-->
 
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+            </plugin>
+            <!--利用maven的assembly插件 打包-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                <version>2.6</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>1.0</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <descriptors>-->
+<!--                                <descriptor>src/main/resources/assembly.xml</descriptor>-->
+<!--                            </descriptors>-->
+
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <!-- MBG 代码生成器 http://mybatis.org/generator/index.html-->
 <!--            <plugin>-->
 <!--                <groupId>org.mybatis.generator</groupId>-->
