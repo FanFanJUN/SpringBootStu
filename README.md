@@ -1,5 +1,5 @@
 # SpringBoot走过的坑
-##### [Mybatis generator mapper文件重新生成不会覆盖原文件](https://blog.csdn.net/zengqiang1/article/details/79381418)
+#### [Mybatis generator mapper文件重新生成不会覆盖原文件](https://blog.csdn.net/zengqiang1/article/details/79381418)
 
 ```
 使用标题所述的generator，在生成xxxMapper.xml文件后
@@ -74,7 +74,7 @@ public class OverIsMergeablePlugin extends PluginAdapter {
     </context>
 </generatorConfiguration>
 ```
-##### springboot服务器部署
+#### springboot服务器部署
 
 - 以jar包形式启动
 
@@ -117,4 +117,54 @@ java    97879   lc  110u  IPv6 0xca1b656b8226f30f      0t0  TCP *:20080 (LISTEN)
 sh start.sh # 启动
 sh stop.sh #停止
 ```
+#### [springboot 打包时配置分离,依赖jar分离](https://my.oschina.net/u/1429362/blog/2967629) 
+#### springboot集成druid
+- 优点
 
+```
+1.Druid能够提供强大的监控和扩展功能
+2.具有监控统计功能-内置监控页面支持jmx等
+3.防御SQL注入攻击
+4.可以日志记录JDBC执行的SQL
+5.理论上说，支持所有有jdbc驱动的数据库
+```
+- 集成
+
+```
+1.引用jar包
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid-spring-boot-starter</artifactId>
+    <version>1.1.21</version>
+</dependency>
+2. 添加配置
+# 可视化界面匹配路径，默认druid
+spring.datasource.druid.stat-view-servlet.url-pattern=/druid/*
+# 最大线程数
+spring.datasource.druid.max-active=10
+# 初始化线程数
+spring.datasource.druid.initial-size=1
+# 是否开启可视化界面
+spring.datasource.druid.stat-view-servlet.enabled=true
+# 是否启用stat-filter
+spring.datasource.druid.web-stat-filter.enabled=true
+# 是否启用sql防火墙
+spring.datasource.druid.filter.wall.enabled=true
+# 只有配置了这个才能使用sql监控
+spring.datasource.druid.filters=wall,stat
+# 切面拦截的类包配置
+spring.datasource.druid.aop-patterns=com.qlshouyu.framework.demo.controller.*
+```
+- 查看程序是否应用druid连接池
+
+```
+➜  springboot1111 git:(master) ✗ jps
+41936 Jps
+34248 Launcher
+87832 
+34249 SpringbootApplication
+33997 RemoteMavenServer
+➜  springboot1111 git:(master) ✗ jstack 34249|grep druid
+        at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2540)
+        at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2443)
+```
