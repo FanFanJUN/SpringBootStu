@@ -5,7 +5,8 @@
         select
         <include refid="Base_Column_List" />
         from TC_RGT_RESOURCE
-        where PARENT_NO = #{parentNo,jdbcType=VARCHAR}
+        where RESOURCE_NO != #{resourceNo}
+        and LOCATION like '%${resourceNo}%'
         <if test="resourceTp != null">
           and  RESOURCE_TP = #{resourceTp,jdbcType=VARCHAR}
         </if>

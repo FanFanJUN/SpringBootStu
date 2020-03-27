@@ -25,6 +25,7 @@ public class TcRrgResourceController {
     public CommonResult getResourceByParentNo(@RequestBody TcRgtResource tcRgtResource){
         try {
             tcRgtResource.setResourceEffectFlg("1"); // 查询有效的资源||功能
+            tcRgtResource.setResourceNo(tcRgtResource.getParentNo());
             return CommonResult.success(tcRgtResourceService.selectByParentNo(tcRgtResource));
         } catch (Exception e) {
             return  CommonResult.failed("资源菜单获取失败");
