@@ -20,6 +20,11 @@ public class TcRgtResourceServiceImpl implements TcRgtResourceService {
     }
 
     @Override
+    public List selectByResourceNo(TcRgtResource tcRgtResource) {
+        return tcRgtResourceMapper.selectByResourceNo(tcRgtResource);
+    }
+
+    @Override
     public  int insertSelective(TcRgtResource tcRgtResource) {
         return tcRgtResourceMapper.insertSelective(tcRgtResource);
     }

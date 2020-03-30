@@ -22,13 +22,23 @@ public class TcRrgResourceController {
 
 
     @PostMapping("/api/lc/RESOURCESELECTLIST")
-    public CommonResult getResourceByParentNo(@RequestBody TcRgtResource tcRgtResource){
+    public CommonResult getResourceByResourceNo(@RequestBody TcRgtResource tcRgtResource){
         try {
             tcRgtResource.setResourceEffectFlg("1"); // 查询有效的资源||功能
             tcRgtResource.setResourceNo(tcRgtResource.getParentNo());
-            return CommonResult.success(tcRgtResourceService.selectByParentNo(tcRgtResource));
+            return CommonResult.success(tcRgtResourceService.selectByResourceNo(tcRgtResource));
         } catch (Exception e) {
             return  CommonResult.failed("资源菜单获取失败");
+        }
+    }
+
+    @PostMapping("/api/lc/RESOURCESTREEELECTLIST")
+    public CommonResult getResourceByParentNo(@RequestBody TcRgtResource tcRgtResource) {
+        try {
+            tcRgtResource.setResourceEffectFlg("1"); // 查询有效的资源||功能
+            return CommonResult.success(tcRgtResourceService.selectByParentNo(tcRgtResource));
+        } catch (Exception e) {
+            return CommonResult.failed("资源菜单获取失败");
         }
     }
 

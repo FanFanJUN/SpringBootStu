@@ -18,4 +18,6 @@ public interface TcRgtResourceMapper {
     int updateByPrimaryKey(TcRgtResource record);
 
     List selectByParentNo(TcRgtResource tcRgtResource);
+
+    List selectByResourceNo(TcRgtResource tcRgtResource);
 }
