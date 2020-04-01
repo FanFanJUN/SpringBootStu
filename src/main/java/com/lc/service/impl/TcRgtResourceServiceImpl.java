@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TcRgtResourceServiceImpl implements TcRgtResourceService {
@@ -21,7 +22,12 @@ public class TcRgtResourceServiceImpl implements TcRgtResourceService {
 
     @Override
     public List selectByResourceNo(TcRgtResource tcRgtResource) {
-        return tcRgtResourceMapper.selectByResourceNo(tcRgtResource);
+        String flag = tcRgtResource.getResourceLvl();
+        if("1".equals(flag) || "2".equals(flag)) {
+           return  tcRgtResourceMapper.selectByParentNo(tcRgtResource);
+        } else {
+            return tcRgtResourceMapper.selectByResourceNo(tcRgtResource);
+        }
     }
 
     @Override

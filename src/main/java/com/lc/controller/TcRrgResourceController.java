@@ -21,6 +21,11 @@ public class TcRrgResourceController {
     TcRgtResourceService tcRgtResourceService;
 
 
+    /**
+     * 根据 resourceLvl 层级查询不同sql
+     * @param tcRgtResource
+     * @return
+     */
     @PostMapping("/api/lc/RESOURCESELECTLIST")
     public CommonResult getResourceByResourceNo(@RequestBody TcRgtResource tcRgtResource){
         try {

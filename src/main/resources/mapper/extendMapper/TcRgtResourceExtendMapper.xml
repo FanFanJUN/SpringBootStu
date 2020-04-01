@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.dao.TcRgtResourceMapper">
-    <!--    查询资源菜单-->
+    <!--    查询二级菜单下所有三级资源菜单-->
     <select id="selectByResourceNo" parameterType="com.lc.model.entity.TcRgtResource" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+       <include refid="Base_Column_List" />
         from TC_RGT_RESOURCE
         where RESOURCE_NO != #{resourceNo}
         and LOCATION like '%${resourceNo}%'
@@ -15,7 +15,7 @@
           and  RESOURCE_EFFECT_FLG = #{resourceEffectFlg,jdbcType=VARCHAR}
         </if>
     </select>
-<!--    查询系统管理下菜单树结构-->
+<!--    查询系统管理下菜单树结构 && 一级、二级菜单查询-->
     <select id="selectByParentNo" parameterType="com.lc.model.entity.TcRgtResource" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
