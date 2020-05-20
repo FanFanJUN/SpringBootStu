@@ -55,9 +55,12 @@ public class RedisCacheUtils {
 
     public static void main(String[] args) {
         RedisCacheUtils utils = new RedisCacheUtils("AlertCache");
-        List<SysDic> list = (List<SysDic>)
-        utils.redisCacheGet("initCache");
-        logger.info(list.toString());
+//        List<SysDic> list = (List<SysDic>)
+//        utils.redisCacheGet("initCache");
+        logger.info(utils.redisCacheGet("initCache")+ "获取");
+//        if(list != null) {
+//            logger.info("获取rediss数据字典");
+//        }
     }
 
 }

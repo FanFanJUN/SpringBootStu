@@ -3,6 +3,7 @@ package com.lc.dao;
 import com.lc.model.entity.TcRgtResource;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TcRgtResourceMapper {
     int deleteByPrimaryKey(String resourceId);

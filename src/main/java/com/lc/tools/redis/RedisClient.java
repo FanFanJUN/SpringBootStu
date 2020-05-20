@@ -3,6 +3,7 @@ package com.lc.tools.redis;
 import com.lc.common.utils.PropertiesUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
+import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
@@ -49,5 +50,14 @@ public enum RedisClient {
         // 设置字符串
         RBucket<String> keyObj = redissonClient.getBucket("k");
         keyObj.set("v1236");
+
+        // RList 继承java.util.List接口 操作Redis列表
+        RList<String> nameList = redissonClient.getList("nameList");
+        nameList.clear();
+        nameList.add("helloRedis");
+        nameList.add("licai");
+        redissonClient.shutdown();
+        // RMap 操作Redish哈希
+        // RLock 实现Redis分布式锁
     }
 }
