@@ -52,6 +52,11 @@ public class TestUser implements Serializable {
         this.birthdate = birthdate;
     }
 
+    public TestUser(Integer id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
     /**
      * 测试用户表构造函数
      * <p>

@@ -61,9 +61,13 @@ public class TreeBuild {
     }
 
     /**
-     *方法三
-     * @param list
-     * @return
+     *
+     * @Description: //TODO
+     * @auther: licai
+     * @date:  18:11  
+     * @param: [list, pid]
+     * @return: java.util.List<com.lc.common.test.tree.TreeNode>
+     *
      */
     public static List<TreeNode> toTree03(List<TreeNode> list,String pid) {
         List<TreeNode> treeList = new ArrayList<TreeNode>();
@@ -78,6 +82,15 @@ public class TreeBuild {
         return treeList;
     }
 
+    /**
+     *
+     * @Description: //TODO
+     * @auther: licai
+     * @date:  18:11  
+     * @param: [treeList, tree]
+     * @return: void
+     *
+     */
     public static void toTreeChildren(List<TreeNode> treeList, TreeNode tree) {
         for (TreeNode node : treeList) {
             if(tree.getPid() == node.getId()){
