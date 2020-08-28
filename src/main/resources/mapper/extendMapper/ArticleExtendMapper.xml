@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.ArticleMapper">
+  <select id="selectList" parameterType="com.lc.model.entity.Article" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    <where>
+      <if test="articleTitle != null">
+       and article_title LIKE CONCAT(CONCAT('%', #{articleTitle}), '%')
+      </if>
+      <if test="articleHref != null">
+       and article_href LIKE CONCAT(CONCAT('%', #{articleHref}), '%')
+      </if>
+      <if test="articleCategory != null">
+       and article_category in (
+       <foreach collection="articleCategory.split(',')" item="item" index="index" separator=",">
+         #{item}
+       </foreach>
+        )
+      </if>
+      <if test="articleRemark != null">
+      and article_remark = #{articleRemark,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+
+  </select>
+</mapper>
