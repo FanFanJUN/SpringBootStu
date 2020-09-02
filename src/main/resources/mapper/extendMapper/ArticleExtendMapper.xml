@@ -8,13 +8,13 @@
     <include refid="Blob_Column_List" />
     from article
     <where>
-      <if test="articleTitle != null">
+      <if test="articleTitle != null and articleTitle != ''">
       and  article_title LIKE concat('%', #{articleTitle}, '%')
       </if>
-      <if test="articleHref != null">
+      <if test="articleHref != null and articleHref != ''">
        and article_href LIKE concat('%', #{articleHref}, '%')
       </if>
-      <if test="articleCategory != null">
+      <if test="articleCategory != null and articleCategory != ''">
        and article_category in 
 <!--       (-->
 <!--       <foreach collection="articleCategory.split(',')" item="item" index="index" separator=",">-->
