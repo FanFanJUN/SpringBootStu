@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@ServletComponentScan
+//@ServletComponentScan
 @MapperScan(basePackages={"com.lc.dao"})
 public class SpringbootApplication {
 

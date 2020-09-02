@@ -2,21 +2,28 @@ package com.lc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lc.common.BusinessException;
 import com.lc.common.CommonPage;
 import com.lc.common.CommonResult;
 import com.lc.common.IdUtils;
+import com.lc.model.Bo.ArticleBo;
 import com.lc.model.Vo.ArticleVo;
 import com.lc.model.entity.Article;
 import com.lc.service.ArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName ArticleController
@@ -66,6 +73,12 @@ public class ArticleController {
     @PostMapping("/api/lc/INSERTARTICLE")
     @ApiOperation(value = "新增", notes = "新增")
     public CommonResult tinserArticle(@RequestBody Article article) {
+        if(StringUtils.isEmpty(article.getArticleTitle())) {
+            throw new BusinessException("文章标题不能为空");
+        }
+        if(StringUtils.isEmpty(article.getArticleCategory())) {
+            throw  new BusinessException("文章类别不能为空");
+        }
         try {
             article.setId(IdUtils.getRandomIdByUUID());
             articleService.insertSelective(article);
@@ -73,6 +86,12 @@ public class ArticleController {
         } catch (Exception e) {
             return CommonResult.failed(e.toString());
         }
+    }
+    
+    @GetMapping("/api/lc/SELECTNUMS")
+    @ApiOperation(value = "查询文章类别数量", notes = "查询文章类别数量")
+    public List<ArticleBo> selectNums() {
+        return articleService.selectNum();
     }
     
 }

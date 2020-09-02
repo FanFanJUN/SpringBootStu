@@ -1,8 +1,11 @@
 package com.lc.service;
 
+import com.lc.model.Bo.ArticleBo;
+import com.lc.model.Vo.ArticleVo;
 import com.lc.model.entity.Article;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName ArticleService
@@ -27,4 +30,6 @@ public interface ArticleService {
     int updateByPrimaryKey(Article record);
 
     List<Article> selectList(Article article);
+
+    List<ArticleBo> selectNum();
 }

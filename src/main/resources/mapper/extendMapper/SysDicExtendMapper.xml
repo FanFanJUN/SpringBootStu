@@ -14,5 +14,21 @@
         select
         <include refid="Base_Column_List" />
         from SYS_DIC
+        <where>
+            <if test="dictionaryCategoryNo != null">
+                and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo}
+            </if>
+        </where>
+        
+    </select>
+    <select id="selectCategory" resultType="com.lc.model.entity.SysDic">
+        SELECT
+	DICTIONARY_CATEGORY_NO AS dictionaryCategoryNo,
+	DICTIONARY_CATEGORY_NM AS dictionaryCategoryNm 
+    FROM
+	SYS_DIC 
+    GROUP BY
+	DICTIONARY_CATEGORY_NO,
+	DICTIONARY_CATEGORY_NM
     </select>
 </mapper>

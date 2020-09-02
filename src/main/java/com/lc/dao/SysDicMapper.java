@@ -20,5 +20,7 @@ public interface SysDicMapper {
 
     List getAllDic();
 
-    List selectList();
+    List selectList(SysDic sysDic);
+    
+    List selectCategory();
 }

@@ -9,17 +9,22 @@
     from article
     <where>
       <if test="articleTitle != null">
-       and article_title LIKE CONCAT(CONCAT('%', #{articleTitle}), '%')
+      and  article_title LIKE concat('%', #{articleTitle}, '%')
       </if>
       <if test="articleHref != null">
-       and article_href LIKE CONCAT(CONCAT('%', #{articleHref}), '%')
+       and article_href LIKE concat('%', #{articleHref}, '%')
       </if>
       <if test="articleCategory != null">
-       and article_category in (
-       <foreach collection="articleCategory.split(',')" item="item" index="index" separator=",">
-         #{item}
-       </foreach>
-        )
+       and article_category in 
+<!--       (-->
+<!--       <foreach collection="articleCategory.split(',')" item="item" index="index" separator=",">-->
+<!--         #{item}-->
+<!--       </foreach>-->
+<!--        )-->
+<!--          <foreach item="item" index="index" collection="articleCategory.split(’,’)"  open="(" separator="," close=")">-->
+<!--              #{item}-->
+<!--          </foreach>-->
+          (${articleCategory})
       </if>
       <if test="articleRemark != null">
       and article_remark = #{articleRemark,jdbcType=LONGVARCHAR}
@@ -27,4 +32,7 @@
     </where>
 
   </select>
+  <select id="selectNum" parameterType="com.lc.model.entity.Article" resultType="java.lang.Integer">
+      select count(*) as totalTitel from article where article_category = #{articleCategory, jdbcType=VARCHAR}
+  </select>  
 </mapper>

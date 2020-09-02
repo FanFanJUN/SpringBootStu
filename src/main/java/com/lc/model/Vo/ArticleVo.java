@@ -1,5 +1,7 @@
 package com.lc.model.Vo;
 
+import com.lc.model.BaseSearchBo;
+
 import java.io.Serializable;
 
 /**
@@ -9,12 +11,16 @@ import java.io.Serializable;
  * @Date 2020-08-28 13:58
  * @Version 1.0
  */
-public class ArticleVo implements Serializable {
+public  class ArticleVo extends BaseSearchBo implements Serializable {
     /** 主键 */
     private String id;
 
     /** 文章标题 */
     private String articleTitle;
+
+    public ArticleVo() {
+        
+    }
 
     public String getId() {
         return id;
@@ -56,22 +62,6 @@ public class ArticleVo implements Serializable {
         this.articleRemark = articleRemark;
     }
 
-    public Integer getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
     /** 文章链接 */
     private String articleHref;
 
@@ -80,20 +70,13 @@ public class ArticleVo implements Serializable {
 
     /** 长文本说明 */
     private String articleRemark;
-    
-    
-    private Integer pageNum;
-    
-    private  Integer pageSize;
 
-    public ArticleVo(String id, String articleTitle, String articleHref, String articleCategory, String articleRemark, Integer pageNum, Integer pageSize) {
+
+    public ArticleVo(String id, String articleTitle, String articleHref, String articleCategory, String articleRemark) {
         this.id = id;
         this.articleTitle = articleTitle;
         this.articleHref = articleHref;
         this.articleCategory = articleCategory;
         this.articleRemark = articleRemark;
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
     }
-    
 }

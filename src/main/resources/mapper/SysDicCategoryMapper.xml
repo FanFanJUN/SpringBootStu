@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.SysDicCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.lc.model.entity.SysDicCategory">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DICTIONARY_CATEGORY_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DICTIONARY_CATEGORY_NM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETE_FLAG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FREEZE_FLAG" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, DICTIONARY_CATEGORY_NO, DICTIONARY_CATEGORY_NM, CREATE_TIME, DELETE_FLAG, FREEZE_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_DIC_CATEGORY
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SYS_DIC_CATEGORY
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lc.model.entity.SysDicCategory">
+    insert into SYS_DIC_CATEGORY (id, DICTIONARY_CATEGORY_NO, DICTIONARY_CATEGORY_NM, 
+      CREATE_TIME, DELETE_FLAG, FREEZE_FLAG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dictionaryCategoryNo,jdbcType=VARCHAR}, #{dictionaryCategoryNm,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=VARCHAR}, #{freezeFlag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lc.model.entity.SysDicCategory">
+    insert into SYS_DIC_CATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictionaryCategoryNo != null">
+        DICTIONARY_CATEGORY_NO,
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        DICTIONARY_CATEGORY_NM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG,
+      </if>
+      <if test="freezeFlag != null">
+        FREEZE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNo != null">
+        #{dictionaryCategoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeFlag != null">
+        #{freezeFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lc.model.entity.SysDicCategory">
+    update SYS_DIC_CATEGORY
+    <set>
+      <if test="dictionaryCategoryNo != null">
+        DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryCategoryNm != null">
+        DICTIONARY_CATEGORY_NM = #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeFlag != null">
+        FREEZE_FLAG = #{freezeFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lc.model.entity.SysDicCategory">
+    update SYS_DIC_CATEGORY
+    set DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo,jdbcType=VARCHAR},
+      DICTIONARY_CATEGORY_NM = #{dictionaryCategoryNm,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      FREEZE_FLAG = #{freezeFlag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

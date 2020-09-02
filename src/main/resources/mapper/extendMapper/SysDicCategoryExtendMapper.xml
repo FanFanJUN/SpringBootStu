@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.dao.SysDicCategoryMapper">
+    <select id="selectList" parameterType="com.lc.model.entity.SysDicCategory" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from SYS_DIC_CATEGORY
+        <where>
+            <if test="dictionaryCategoryNo != null">
+              and  DICTIONARY_CATEGORY_NO like concat('%', #{dictionaryCategoryNo}, '%')
+            </if>
+            <if test="dictionaryCategoryNm != null">
+                and  DICTIONARY_CATEGORY_NM like concat('%', #{dictionaryCategoryNm}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

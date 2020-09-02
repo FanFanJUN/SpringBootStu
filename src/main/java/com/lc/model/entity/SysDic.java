@@ -1,5 +1,7 @@
 package com.lc.model.entity;
 
+import com.lc.model.BaseSearchBo;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,7 +24,7 @@ import java.util.Date;
  * maintenanceDate 维护日期<br>
  * deleteFlag 删除标志<br>
  */
-public class SysDic implements Serializable {
+public class SysDic extends BaseSearchBo implements Serializable {
     /** 字典编号 */
     private String dictionaryNo;
 

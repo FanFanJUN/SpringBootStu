@@ -20,4 +20,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
     
     List selectList(Article article);
+    
+    Integer selectNum(Article article);
 }
