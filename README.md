@@ -168,3 +168,14 @@ spring.datasource.druid.aop-patterns=com.qlshouyu.framework.demo.controller.*
         at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2540)
         at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2443)
 ```
+- 测试方法类TestTree.java
+#### 强有力的校验8位字符串日期 checkYearMonthDay()
+#### [Java 8 中 Map 骚操作之 merge() 的用法](https://mp.weixin.qq.com/s/ExUqUjXlwi6uKFt7frL2RA)
+#### 获取当前年的天数 int daysOfThisYear = LocalDate.now().lengthOfYear();
+#### java8 多个字段去重
+
+```
+ArrayList<QuotaAgreementLineSobBo> collect2 = quotaAgreementLines.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(
+        s -> s.getSpecialPurchaseType() + "_" + s.getMaterialCode() + "_" + s.getFactoryCode() + "_" + s.getSupplierCode()
+))), ArrayList::new));
+```

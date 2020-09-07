@@ -1,6 +1,7 @@
 package com.lc.common.test.tree;
 
 import com.lc.common.utils.TreeBuild;
+import com.lc.model.entity.StudentScore;
 import com.lc.model.entity.TestUser;
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -110,6 +112,79 @@ public class TestTree {
         int daysOfThisYear = LocalDate.now().lengthOfYear();
 
         System.out.println(daysOfThisYear);
+        // Map的 merge用法
+        Map<String, Integer> studentScoreMap2 = new HashMap<>();
+        List<StudentScore> studentScoreList = buildATestList();
+        // 对象包含学生姓名、科目、科目分数三个属性，要求求得每个学生的总成绩
+        studentScoreList.forEach(studentScore -> studentScoreMap2.merge(
+                studentScore.getStuName(),
+                studentScore.getScore(),
+                Integer::sum));
+
+        System.out.println(studentScoreMap2);
+
+    }
+
+    // 构建学生分数 list
+    private static List<StudentScore> buildATestList() {
+        List<StudentScore> studentScoreList = new ArrayList<>();
+        StudentScore studentScore1 = new StudentScore() {{
+            setStuName("张三");
+            setSubJect("语文");
+            setScore(70);
+        }};
+        StudentScore studentScore2 = new StudentScore() {{
+            setStuName("张三");
+            setSubJect("数学");
+            setScore(80);
+        }};
+        StudentScore studentScore3 = new StudentScore() {{
+            setStuName("张三");
+            setSubJect("英语");
+            setScore(65);
+        }};
+        StudentScore studentScore4 = new StudentScore() {{
+            setStuName("李四");
+            setSubJect("语文");
+            setScore(68);
+        }};
+        StudentScore studentScore5 = new StudentScore() {{
+            setStuName("李四");
+            setSubJect("数学");
+            setScore(70);
+        }};
+        StudentScore studentScore6 = new StudentScore() {{
+            setStuName("李四");
+            setSubJect("英语");
+            setScore(90);
+        }};
+        StudentScore studentScore7 = new StudentScore() {{
+            setStuName("王五");
+            setSubJect("语文");
+            setScore(80);
+        }};
+        StudentScore studentScore8 = new StudentScore() {{
+            setStuName("王五");
+            setSubJect("数学");
+            setScore(85);
+        }};
+        StudentScore studentScore9 = new StudentScore() {{
+            setStuName("王五");
+            setSubJect("英语");
+            setScore(70);
+        }};
+
+        studentScoreList.add(studentScore1);
+        studentScoreList.add(studentScore2);
+        studentScoreList.add(studentScore3);
+        studentScoreList.add(studentScore4);
+        studentScoreList.add(studentScore5);
+        studentScoreList.add(studentScore6);
+        studentScoreList.add(studentScore7);
+        studentScoreList.add(studentScore8);
+        studentScoreList.add(studentScore9);
+
+        return studentScoreList;
     }
 
 
