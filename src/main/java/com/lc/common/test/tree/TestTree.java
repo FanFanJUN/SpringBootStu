@@ -6,6 +6,7 @@ import com.lc.model.entity.TestUser;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -112,7 +113,7 @@ public class TestTree {
         int daysOfThisYear = LocalDate.now().lengthOfYear();
 
         System.out.println(daysOfThisYear);
-        // Map的 merge用法
+        /********************Map的 merge用法**************/
         Map<String, Integer> studentScoreMap2 = new HashMap<>();
         List<StudentScore> studentScoreList = buildATestList();
         // 对象包含学生姓名、科目、科目分数三个属性，要求求得每个学生的总成绩
@@ -122,7 +123,22 @@ public class TestTree {
                 Integer::sum));
 
         System.out.println(studentScoreMap2);
+        
+        /****************int/int 保留2位小数****************/
 
+        txfloat();
+    }
+
+    /****************int/int 保留2位小数****************/
+    private static void txfloat() {
+        int a=23;
+        int b=3;
+        DecimalFormat df=new DecimalFormat("0.00");
+
+        System.out.println(df.format((float)a/b));
+        System.out.println(df.format(a/(float)b));
+        System.out.println(df.format((float)a/(float)b));
+        System.out.println(df.format((float)(a/b)));
     }
 
     // 构建学生分数 list

@@ -179,3 +179,17 @@ ArrayList<QuotaAgreementLineSobBo> collect2 = quotaAgreementLines.stream().colle
         s -> s.getSpecialPurchaseType() + "_" + s.getMaterialCode() + "_" + s.getFactoryCode() + "_" + s.getSupplierCode()
 ))), ArrayList::new));
 ```
+#### java int/int 保留两位小数
+```
+/****************int/int 保留2位小数****************/
+    private static void txfloat() {
+        int a=100;
+        int b=3;
+        DecimalFormat df=new DecimalFormat("0.00");
+
+        System.out.println(df.format((float)a/b));
+        System.out.println(df.format(a/(float)b));
+        System.out.println(df.format((float)a/(float)b));
+        System.out.println(df.format((float)(a/b)));
+    }
+```

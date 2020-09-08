@@ -18,6 +18,9 @@
             <if test="dictionaryCategoryNo != null">
                 and DICTIONARY_CATEGORY_NO = #{dictionaryCategoryNo}
             </if>
+            <if test="dictionaryNo != null">
+                and DICTIONARY_NO = #{dictionaryNo}
+            </if>
         </where>
         
     </select>

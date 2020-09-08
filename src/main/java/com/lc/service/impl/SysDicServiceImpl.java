@@ -5,6 +5,7 @@ import com.lc.dao.SysDicMapper;
 import com.lc.model.entity.SysDic;
 import com.lc.model.entity.SysDicCategory;
 import com.lc.service.SysDicService;
+import com.lc.service.helper.SysDicServiceHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ public class SysDicServiceImpl implements SysDicService {
     SysDicMapper sysDicMapper;
     @Resource
     SysDicCategoryMapper sysDicCategoryMapper;
+    @Resource
+    SysDicServiceHelper sysDicServiceHelper;
 
     @Override
     public int deleteByPrimaryKey(String dictionaryNo, String dictionaryCategoryNo) {
@@ -27,6 +30,7 @@ public class SysDicServiceImpl implements SysDicService {
 
     @Override
     public int insertSelective(SysDic record) {
+        sysDicServiceHelper.checkInput(record);
         return sysDicMapper.insertSelective(record);
     }
 
