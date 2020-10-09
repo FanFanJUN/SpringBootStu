@@ -1,5 +1,7 @@
 package com.lc.model.entity;
 
+import java.math.BigDecimal;
+
 /**
  * @ClassName StudentScore
  * @Description TODO
@@ -13,6 +15,8 @@ public class StudentScore {
     private String subJect;
     
     private Integer score;
+    
+    private BigDecimal money;
 
     public String getStuName() {
         return stuName;
@@ -36,5 +40,13 @@ public class StudentScore {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
     }
 }

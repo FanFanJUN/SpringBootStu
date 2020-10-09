@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -127,6 +128,16 @@ public class TestTree {
         /****************int/int 保留2位小数****************/
 
         txfloat();
+        /*********累加求和********************/
+        int sum = studentScoreList.stream().mapToInt(p -> p.getScore()).sum();
+        BigDecimal bigDecimal = studentScoreList.stream().map(item -> item.getMoney()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_DOWN); // 向下取整  保留两位小数
+        BigDecimal bigDecimal1 = studentScoreList.stream().map(StudentScore::getMoney).reduce(BigDecimal::add).get();
+        bigDecimal1 = bigDecimal1.setScale(2, BigDecimal.ROUND_DOWN);// 向下取整  保留两位小数
+        System.out.println(sum);
+        System.out.println(bigDecimal);
+        System.out.println(bigDecimal1);
+
     }
 
     /****************int/int 保留2位小数****************/
@@ -148,46 +159,55 @@ public class TestTree {
             setStuName("张三");
             setSubJect("语文");
             setScore(70);
+            setMoney(new BigDecimal(45.78));
         }};
         StudentScore studentScore2 = new StudentScore() {{
             setStuName("张三");
             setSubJect("数学");
             setScore(80);
+            setMoney(new BigDecimal(4.78));
         }};
         StudentScore studentScore3 = new StudentScore() {{
             setStuName("张三");
             setSubJect("英语");
             setScore(65);
+            setMoney(new BigDecimal(95.78));
         }};
         StudentScore studentScore4 = new StudentScore() {{
             setStuName("李四");
             setSubJect("语文");
             setScore(68);
+            setMoney(new BigDecimal(45.8));
         }};
         StudentScore studentScore5 = new StudentScore() {{
             setStuName("李四");
             setSubJect("数学");
             setScore(70);
+            setMoney(new BigDecimal(4.78));
         }};
         StudentScore studentScore6 = new StudentScore() {{
             setStuName("李四");
             setSubJect("英语");
             setScore(90);
+            setMoney(new BigDecimal(46.78));
         }};
         StudentScore studentScore7 = new StudentScore() {{
             setStuName("王五");
             setSubJect("语文");
             setScore(80);
+            setMoney(new BigDecimal(45.78));
         }};
         StudentScore studentScore8 = new StudentScore() {{
             setStuName("王五");
             setSubJect("数学");
             setScore(85);
+            setMoney(new BigDecimal(45.78));
         }};
         StudentScore studentScore9 = new StudentScore() {{
             setStuName("王五");
             setSubJect("英语");
             setScore(70);
+            setMoney(new BigDecimal(49.78));
         }};
 
         studentScoreList.add(studentScore1);

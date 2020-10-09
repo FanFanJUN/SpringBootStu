@@ -193,3 +193,12 @@ ArrayList<QuotaAgreementLineSobBo> collect2 = quotaAgreementLines.stream().colle
         System.out.println(df.format((float)(a/b)));
     }
 ```
+#### java 8 累加求和  int 与 BigDecimal类型
+```
+ /*********累加求和********************/
+        int sum = studentScoreList.stream().mapToInt(p -> p.getScore()).sum();
+        BigDecimal bigDecimal = studentScoreList.stream().map(item -> item.getMoney()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_DOWN); // 向下取整  保留两位小数
+        BigDecimal bigDecimal1 = studentScoreList.stream().map(StudentScore::getMoney).reduce(BigDecimal::add).get();
+        bigDecimal1 = bigDecimal1.setScale(2, BigDecimal.ROUND_DOWN);// 向下取整  保留两位小数
+```
