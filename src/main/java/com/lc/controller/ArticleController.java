@@ -52,7 +52,7 @@ public class ArticleController {
     @ApiOperation(value = "获取列表", notes = "获取列表")
     public CommonResult selectArticleList(@RequestBody ArticleVo articleVo) {
         try {
-            PageHelper.startPage(articleVo.getPageNum(), articleVo.getPageSize());
+            PageHelper.startPage(articleVo.getPage(), articleVo.getRows());
             Article article = new Article();
             BeanUtils.copyProperties(articleVo, article);
             return CommonResult.success(CommonPage.restPage(articleService.selectList(article)));

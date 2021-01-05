@@ -1,6 +1,6 @@
 package com.lc.model.Vo;
 
-import com.lc.model.BaseSearchBo;
+import com.lc.model.Bo.base.BaseSearchBo;
 
 import java.io.Serializable;
 
@@ -11,15 +11,18 @@ import java.io.Serializable;
  * @Date 2020-08-28 13:58
  * @Version 1.0
  */
-public  class ArticleVo extends BaseSearchBo implements Serializable {
+public  class ArticleVo extends BaseSearchBo {
     /** 主键 */
     private String id;
 
     /** 文章标题 */
     private String articleTitle;
 
+    /**快速查询*/
+    private String quickSearchValue;
+
     public ArticleVo() {
-        
+
     }
 
     public String getId() {
@@ -78,5 +81,15 @@ public  class ArticleVo extends BaseSearchBo implements Serializable {
         this.articleHref = articleHref;
         this.articleCategory = articleCategory;
         this.articleRemark = articleRemark;
+    }
+
+    @Override
+    public String getQuickSearchValue() {
+        return quickSearchValue;
+    }
+
+    @Override
+    public void setQuickSearchValue(String quickSearchValue) {
+        this.quickSearchValue = quickSearchValue;
     }
 }
